@@ -32,17 +32,15 @@ async fn main() -> Result<()> {
             reference::build_shell_completion(&out_path, &shell)?;
             Ok(())
         },
-        | crate::args::Command::Run { until, interval } => {
+        | crate::args::Command::Run { until, interval, type_ } => {
             let mut e = enigo::Enigo::new(&enigo::Settings::default())?;
-
             loop {
                 if let Some(until) = until {
                     if Utc::now() > until {
                         break;
                     }
                 }
-
-                e.text(".")?;
+                e.text(&type_)?;
                 std::thread::sleep(interval);
             }
 

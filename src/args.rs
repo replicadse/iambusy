@@ -58,6 +58,7 @@ pub enum Command {
     Run {
         until: Option<DateTime<FixedOffset>>,
         interval: Duration,
+        type_: String,
     },
 }
 
@@ -109,9 +110,15 @@ impl ClapArgumentLoader {
                         clap::Arg::new("interval")
                             .short('i')
                             .long("interval")
-                            .value_parser(clap::value_parser!(u64))
                             .required(false)
-                            .default_value("1"),
+                            .default_value("1s"),
+                    )
+                    .arg(
+                        clap::Arg::new("type")
+                            .short('t')
+                            .long("type")
+                            .required(false)
+                            .default_value("."),
                     ),
             )
     }
@@ -150,7 +157,8 @@ impl ClapArgumentLoader {
 
             Command::Run {
                 until,
-                interval: Duration::from_secs(*subc.get_one::<u64>("interval").unwrap()),
+                interval: parse_duration::parse(&subc.get_one::<String>("interval").unwrap())?,
+                type_: subc.get_one::<String>("type").unwrap().into(),
             }
         } else {
             return Err(anyhow::anyhow!("unknown command"));
