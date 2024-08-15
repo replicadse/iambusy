@@ -106,20 +106,8 @@ impl ClapArgumentLoader {
                     .about("Run the program.")
                     .arg(clap::Arg::new("until").long("until").required(false).conflicts_with("for"))
                     .arg(clap::Arg::new("for").long("for").required(false).conflicts_with("until"))
-                    .arg(
-                        clap::Arg::new("interval")
-                            .short('i')
-                            .long("interval")
-                            .required(false)
-                            .default_value("1s"),
-                    )
-                    .arg(
-                        clap::Arg::new("type")
-                            .short('t')
-                            .long("type")
-                            .required(false)
-                            .default_value("."),
-                    ),
+                    .arg(clap::Arg::new("interval").short('i').long("interval").required(false).default_value("1s"))
+                    .arg(clap::Arg::new("type").short('t').long("type").required(false).default_value(".")),
             )
     }
 
@@ -157,7 +145,7 @@ impl ClapArgumentLoader {
 
             Command::Run {
                 until,
-                interval: parse_duration::parse(&subc.get_one::<String>("interval").unwrap())?,
+                interval: parse_duration::parse(subc.get_one::<String>("interval").unwrap())?,
                 type_: subc.get_one::<String>("type").unwrap().into(),
             }
         } else {

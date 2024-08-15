@@ -422,7 +422,6 @@ dependencies = [
  "hoox",
  "parse_duration",
  "tokio",
- "version-compare",
 ]
 
 [[package]]
