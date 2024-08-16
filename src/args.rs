@@ -65,9 +65,9 @@ pub struct ClapArgumentLoader {}
 
 impl ClapArgumentLoader {
     pub fn root_command() -> clap::Command {
-        clap::Command::new("hoox")
+        clap::Command::new("iambusy")
             .version(env!("CARGO_PKG_VERSION"))
-            .about("hoox - git hooks done right")
+            .about("iambusy - i am busy")
             .author("Alexander Weber <aw@voidpointergroup.com>")
             .propagate_version(true)
             .subcommand_required(true)
