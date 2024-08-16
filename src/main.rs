@@ -32,7 +32,7 @@ async fn main() -> Result<()> {
             reference::build_shell_completion(&out_path, &shell)?;
             Ok(())
         },
-        | crate::args::Command::Run { until, interval, type_ } => {
+        | crate::args::Command::Run { until, interval } => {
             let mut e = enigo::Enigo::new(&enigo::Settings::default())?;
             loop {
                 if let Some(until) = until {
@@ -40,7 +40,7 @@ async fn main() -> Result<()> {
                         break;
                     }
                 }
-                e.text(&type_)?;
+                e.text(".")?;
                 std::thread::sleep(interval);
             }
 
