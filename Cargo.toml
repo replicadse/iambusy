@@ -19,13 +19,13 @@ path = "./src/main.rs"
 default = []
 
 [dependencies]
-async-trait = "0.1.81"
-tokio = { version = "1.39.2", features = ["rt", "rt-multi-thread", "macros"] }
-clap = "4.5.16"
-clap_complete = "4.5.17"
+async-trait = "0.1.82"
+tokio = { version = "1.40.0", features = ["rt", "rt-multi-thread", "macros"] }
+clap = "4.5.17"
+clap_complete = "4.5.26"
 clap_mangen = "0.2.23"
 clap-markdown = "0.1.4"
-anyhow = "1.0.86"
+anyhow = "1.0.87"
 chrono = "0.4.38"
 enigo = "0.2.1"
 parse_duration = "2.1.1"
@@ -34,9 +34,6 @@ parse_duration = "2.1.1"
 lto = true
 codegen-units = 1
 panic = "abort"
-
-[profile.dev]
-debug = 0
 
 [dev-dependencies]
 hoox = "0.3.0"
